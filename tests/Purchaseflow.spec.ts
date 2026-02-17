@@ -38,7 +38,7 @@ test('Full purchase flow start to finish', async ({ page }) => {
     );
     
     // Continuing
-    //await shopMuffin.clickContinue();
+    await shopMuffin.clickContinue();
     // Finalizing the order
     await shopMuffin.clickFinish();
     // The test finishes -> an image pops up that the order was placed successfully.
