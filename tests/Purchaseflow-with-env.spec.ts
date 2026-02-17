@@ -29,16 +29,16 @@ test('Full purchase flow start to finish', async ({ page }) => {
     // Moving onto the the Contact Information, verifying that we're on correct page
     await expect(page.getByText('Contact information')).toBeVisible();
 
-    // Adding the mandatory information to proceed further with test
-    await shopMuffin.fillContactInformation(
-        'mantas@testingthis1234.xyz', // Email 
-        'Mantas Testas', // Full name
-        '+37061234567', // Phone number
-        'Žiūrim ar veikia' // Special dietary requests/comment 
+    // Adding the mandatory information to proceed further with test, using env details for flexibility and security
+    await shopMuffin.fillContactInformation( 
+        process.env.TEST_USER_EMAIL!, 
+        process.env.TEST_USER_NAME!, 
+        process.env.TEST_USER_PHONE!,
+        'Žiūrim ar veikia' // Special dietary requests/comment (could make env as well but it is a mandatory field.)
     );
     
     // Continuing
-    //await shopMuffin.clickContinue();
+    await shopMuffin.clickContinue();
     // Finalizing the order
     await shopMuffin.clickFinish();
     // The test finishes -> an image pops up that the order was placed successfully.
